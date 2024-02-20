@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://cvxf2sv85m6dx"]
+
+[ext_resource type="Texture2D" uid="uid://bmn33jgtsfo7g" path="res://assets/sprites/tilesheet_complete.png" id="1_0eybg"]
+[ext_resource type="Script" path="res://scenes/moving_rock.gd" id="1_1megk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bvt63"]
+size = Vector2(192, 44)
+
+[sub_resource type="Animation" id="Animation_v6vbv"]
+resource_name = "move_left_and_right"
+length = 4.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MovingRockAnimatable:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(200, 0), Vector2(0, 0), Vector2(-200, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a5rqs"]
+_data = {
+"move_left_and_right": SubResource("Animation_v6vbv")
+}
+
+[node name="MovingRock" type="Node2D"]
+position = Vector2(1, -1)
+script = ExtResource("1_1megk")
+
+[node name="MovingRockAnimatable" type="AnimatableBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MovingRockAnimatable"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_bvt63")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="MovingRockAnimatable"]
+texture = ExtResource("1_0eybg")
+region_enabled = true
+region_rect = Rect2(322, 192, 190, 55)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MovingRockAnimatable"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_a5rqs")
+}

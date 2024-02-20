@@ -1,9 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://c8xk1b83rnq10"]
+[gd_scene load_steps=12 format=3 uid="uid://c8xk1b83rnq10"]
 
 [ext_resource type="Texture2D" uid="uid://g3xc4vkvv8pw" path="res://assets/sprites/sky1.png" id="1_3ro5h"]
+[ext_resource type="Script" path="res://scenes/playground.gd" id="1_15lya"]
 [ext_resource type="PackedScene" uid="uid://dtdsuujjrrsma" path="res://scenes/princess.tscn" id="1_auoed"]
 [ext_resource type="PackedScene" uid="uid://dlo4dg3gwnete" path="res://scenes/testing_floor.tscn" id="2_08nsw"]
 [ext_resource type="Texture2D" uid="uid://cqteaa5qborop" path="res://assets/sprites/sky2.png" id="2_eop63"]
+[ext_resource type="PackedScene" uid="uid://bk4wqw2fxae1i" path="res://scenes/floating_rock.tscn" id="4_vbmnu"]
+[ext_resource type="PackedScene" uid="uid://dokccyw4j6eox" path="res://scenes/spiky_rock.tscn" id="6_a58jh"]
+[ext_resource type="PackedScene" uid="uid://cvxf2sv85m6dx" path="res://scenes/moving_rock.tscn" id="6_tor5n"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jk4h8"]
 texture = ExtResource("1_3ro5h")
@@ -24,6 +28,7 @@ sources/0 = SubResource("TileSetAtlasSource_jk4h8")
 sources/1 = SubResource("TileSetAtlasSource_atfpy")
 
 [node name="Playground" type="Node2D"]
+script = ExtResource("1_15lya")
 
 [node name="Background" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_3x6bi")
@@ -32,8 +37,20 @@ layer_0/tile_data = PackedInt32Array(1572871, 0, 0, 1638407, 0, 0, 1703943, 0, 0
 
 [node name="TestingFloor" parent="." instance=ExtResource("2_08nsw")]
 position = Vector2(-2, -3)
-layer_0/tile_data = PackedInt32Array(589841, 524288, 3, 589840, 524288, 3, 589839, 524288, 3, 589838, 524288, 3, 589837, 524288, 3, 589836, 524288, 3, 589835, 524288, 3, 589834, 524288, 3, 589833, 524288, 3, 589832, 524288, 3, 589831, 524288, 3, 589830, 524288, 3, 589829, 524288, 3, 589828, 524288, 3, 589827, 524288, 3, 589826, 524288, 3, 589825, 524288, 3, 589824, 524288, 3, 327682, 524288, 3, 327683, 524288, 3, 327684, 524288, 3, 327685, 524288, 3, 327694, 524288, 3, 327695, 524288, 3, 327696, 524288, 3, 524288, 589824, 5, 262160, 589824, 5, 262146, 720896, 7, 524305, 589824, 7, 524304, 720896, 7)
+layer_0/tile_data = PackedInt32Array(589841, 524288, 3, 589840, 524288, 3, 589839, 524288, 3, 589838, 524288, 3, 589837, 524288, 3, 589836, 524288, 3, 589835, 524288, 3, 589834, 524288, 3, 589833, 524288, 3, 589832, 524288, 3, 589831, 524288, 3, 589830, 524288, 3, 589829, 524288, 3, 589828, 524288, 3, 589827, 524288, 3, 589826, 524288, 3, 589825, 524288, 3, 589824, 524288, 3, 524288, 589824, 5, 524305, 589824, 7, 524304, 720896, 7, 524303, 589824, 5, 524289, 720896, 7)
+
+[node name="FloatingRock" parent="TestingFloor" instance=ExtResource("4_vbmnu")]
+position = Vector2(376, 402)
 
 [node name="Princess" parent="." instance=ExtResource("1_auoed")]
 position = Vector2(525, 195)
 scale = Vector2(0.5, 0.5)
+
+[node name="SpikyRock" parent="." instance=ExtResource("6_a58jh")]
+position = Vector2(895, 324)
+
+[node name="MovingRock" parent="." instance=ExtResource("6_tor5n")]
+position = Vector2(168, 237)
+
+[connection signal="player_dead" from="Princess" to="." method="_on_princess_player_dead"]
+[connection signal="player_hurt" from="SpikyRock" to="Princess" method="_on_spiky_rock_player_hurt"]
