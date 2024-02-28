@@ -1,20 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://bk4wqw2fxae1i"]
+[gd_scene load_steps=4 format=3 uid="uid://bk4wqw2fxae1i"]
 
 [ext_resource type="Texture2D" uid="uid://bmn33jgtsfo7g" path="res://assets/sprites/tilesheet_complete.png" id="1_7k28y"]
+[ext_resource type="Script" path="res://scenes/floating_rock.gd" id="1_pcmsb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e4iov"]
 size = Vector2(127, 64)
 
 [node name="FloatingRock" type="AnimatableBody2D"]
 position = Vector2(-6, 0)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(5.5, 0)
-shape = SubResource("RectangleShape2D_e4iov")
-one_way_collision = true
+collision_layer = 2
+collision_mask = 17
+script = ExtResource("1_pcmsb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(6, 0)
 texture = ExtResource("1_7k28y")
 region_enabled = true
 region_rect = Rect2(449, 255, 128, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(5.5, 0)
+shape = SubResource("RectangleShape2D_e4iov")
+one_way_collision = true

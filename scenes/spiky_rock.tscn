@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dokccyw4j6eox"]
+[gd_scene load_steps=4 format=3 uid="uid://dokccyw4j6eox"]
 
 [ext_resource type="Texture2D" uid="uid://bmn33jgtsfo7g" path="res://assets/sprites/tilesheet_complete.png" id="1_d1mga"]
 [ext_resource type="Script" path="res://scenes/spiky_rock.gd" id="1_glwn7"]
@@ -6,13 +6,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x5d1m"]
 size = Vector2(128, 28)
 
-[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_uc5y8"]
-points = PackedVector2Array(-35, 0, 0, 30, 38, 0)
-
 [node name="SpikyRock" type="AnimatableBody2D"]
+position = Vector2(195, 166)
 script = ExtResource("1_glwn7")
-metadata/_edit_vertical_guides_ = [43.0]
-metadata/_edit_horizontal_guides_ = [-3.0]
+metadata/_edit_vertical_guides_ = [43.0, 214.0]
+metadata/_edit_horizontal_guides_ = [99.0]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_d1mga")
@@ -27,9 +25,8 @@ one_way_collision = true
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(0, -7)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Area2D"]
 position = Vector2(-1, 7)
-shape = SubResource("ConvexPolygonShape2D_uc5y8")
-debug_color = Color(0.917647, 0.243137, 0.388235, 0.419608)
+polygon = PackedVector2Array(-22, 11, 22, 11, 1, 30)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

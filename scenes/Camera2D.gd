@@ -1,6 +1,7 @@
 extends Camera2D
 
 var highest_y_position := INF  # Initialize with infinity so any position will be lower
+const NAME = "Camera"
 
 func _ready():
 	# Assuming Princess is the name of the node and it is a direct child of the level

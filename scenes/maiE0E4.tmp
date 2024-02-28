@@ -1,42 +1,26 @@
-[gd_scene load_steps=6 format=3 uid="uid://c6qia2j877dhb"]
+[gd_scene load_steps=5 format=3 uid="uid://c6qia2j877dhb"]
 
 [ext_resource type="PackedScene" uid="uid://dlo4dg3gwnete" path="res://scenes/testing_floor.tscn" id="1_608rs"]
 [ext_resource type="Script" path="res://scenes/main_level.gd" id="1_yb0p4"]
 [ext_resource type="PackedScene" uid="uid://dtdsuujjrrsma" path="res://scenes/princess.tscn" id="2_tou14"]
-[ext_resource type="Script" path="res://scenes/testing_floor.gd" id="3_1h6ym"]
 [ext_resource type="Script" path="res://scenes/Camera2D.gd" id="4_owgff"]
 
 [node name="MainLevel" type="Node2D"]
 script = ExtResource("1_yb0p4")
 metadata/_edit_vertical_guides_ = [-1112.0]
-
-[node name="RocksContainer" type="Node2D" parent="."]
-
-[node name="WallsContainer" type="Node2D" parent="."]
+metadata/_edit_horizontal_guides_ = [799.0]
 
 [node name="TestingFloor" parent="." instance=ExtResource("1_608rs")]
 layer_0/tile_data = PackedInt32Array(720896, 524288, 3, 720897, 524288, 3, 720898, 524288, 3, 720899, 524288, 3, 720900, 524288, 3, 720901, 524288, 3, 720902, 524288, 3, 720903, 524288, 3, 720904, 524288, 3, 720905, 524288, 3, 786431, 524288, 3)
-script = ExtResource("3_1h6ym")
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_mirroring = Vector2(600, 700)
-
-[node name="ColorRect" type="ColorRect" parent="ParallaxBackground/ParallaxLayer"]
-offset_right = 601.0
-offset_bottom = 758.0
-color = Color(0.180392, 0.321569, 1, 1)
-metadata/_edit_use_anchors_ = true
 
 [node name="Princess" parent="." instance=ExtResource("2_tou14")]
-position = Vector2(310, 640)
+position = Vector2(295, 671)
 scale = Vector2(0.5, 0.5)
 
 [node name="SuperJumpTimer" type="Timer" parent="Princess"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(304, 380)
+position = Vector2(299, 398)
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 drag_left_margin = 1.0
@@ -47,5 +31,4 @@ editor_draw_limits = true
 editor_draw_drag_margin = true
 script = ExtResource("4_owgff")
 
-[connection signal="game_over" from="Princess" to="." method="_on_princess_game_over"]
 [connection signal="timeout" from="Princess/SuperJumpTimer" to="." method="_on_super_jump_timer_timeout"]

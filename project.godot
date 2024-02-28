@@ -15,10 +15,16 @@ run/main_scene="res://scenes/playground.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+ScoreUI="*res://scenes/score_ui.tscn"
+
 [display]
 
 window/size/viewport_width=600
-window/size/viewport_height=800
+window/size/viewport_height=700
+window/size/initial_position_type=0
+window/size/initial_position=Vector2i(0, -100)
 window/size/resizable=false
 
 [input]
@@ -39,8 +45,10 @@ left={
 [layer_names]
 
 2d_physics/layer_1="Player"
-2d_physics/layer_2="Environment"
+2d_physics/layer_2="RocksAnimatable"
 2d_physics/layer_3="Item"
+2d_physics/layer_4="RocksCollisionShape"
+2d_physics/layer_5="Walls"
 
 [rendering]
 
