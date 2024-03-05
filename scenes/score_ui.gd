@@ -35,3 +35,10 @@ func increase_current_height(value):
 
 func update_height():
 	$Height.text = "Height " + str(get_current_height())
+	
+func play_song(name):
+	if name == "MenuSong":
+		pass
+		#$FirstSong.play()
+		
+
